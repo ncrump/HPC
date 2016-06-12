@@ -1,0 +1,21 @@
+% gfortran-5 pi_f.f90 -o pi_f
+% gfortran-5 pi_f_omp.f90 -fopenmp -o pi_f_omp
+
+% /usr/bin/time ./pi_f
+ approximation to pi =   3.1415926445762157
+        3.20 real         3.20 user         0.00 sys
+
+% setenv OMP_NUM_THREADS 1
+% /usr/bin/time ./pi_f_omp
+ approximation to pi =   3.1415926445762157
+        3.20 real         3.20 user         0.00 sys
+
+% setenv OMP_NUM_THREADS 2
+% /usr/bin/time ./pi_f_omp
+ approximation to pi =   3.1415926450762157
+        1.60 real         3.21 user         0.00 sys
+
+% setenv OMP_NUM_THREADS 4
+% /usr/bin/time ./pi_f_omp
+ approximation to pi =   3.1415926460762158
+        0.84 real         3.36 user         0.00 sys

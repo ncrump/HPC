@@ -1,0 +1,30 @@
+% gfortran-5 hello_f_omp.f90 -fopenmp -o hello_f_omp
+% setenv OMP_NUM_THREADS 4
+% ./hello_f_omp
+ hello from thread           0
+ hello from thread           1
+ hello from thread           3
+ hello from thread           2
+
+% gcc-5 hello_c_omp.c -fopenmp -o hello_c_omp
+% setenv OMP_NUM_THREADS 4
+% ./hello_c_omp
+hello from thread 0
+hello from thread 3
+hello from thread 1
+hello from thread 2
+
+
+% mpif90 hello_f_mpi.f90 -o hello_f_mpi
+% mpirun -np 4 hello_f_mpi
+ hello from process           1
+ hello from process           2
+ hello from process           3
+ hello from process           0
+
+% mpicc hello_c_mpi.c -o hello_c_mpi
+% mpirun -np 4 hello_c_mpi
+hello from process 0
+hello from process 2
+hello from process 3
+hello from process 1

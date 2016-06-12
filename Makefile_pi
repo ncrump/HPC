@@ -1,0 +1,78 @@
+EXE1=pi_c_omp.x
+OBJ1=pi_c_omp.o
+
+EXE2=pi_f_omp.x
+OBJ2=pi_f_omp.o
+
+EXE3=pi_c_mpi.x
+OBJ3=pi_c_mpi.o
+
+EXE4=pi_f_mpi.x
+OBJ4=pi_f_mpi.o
+
+EXE5=pi_c.x
+OBJ5=pi_c.o
+
+EXE6=pi_f.x
+OBJ6=pi_f.o
+
+
+CCOMP=gcc-5 -Wall -O3 -c -fopenmp
+CLOMP=gcc-5 -fopenmp
+FCOMP=gfortran-5 -Wall -O3 -c -fopenmp
+FLOMP=gfortran-5 -fopenmp
+
+CCMPI=mpicc -Wall -O3 -c
+CLMPI=mpicc
+FCMPI=mpif90 -Wall -O3 -c
+FLMPI=mpif90
+
+CC=gcc-5 -Wall -O3 -c
+CL=gcc-5
+FC=gfortran-5 -Wall -O3 -c
+FL=gfortran-5
+
+
+all: $(EXE1) $(EXE2) $(EXE3) $(EXE4) $(EXE5) $(EXE6)
+	@echo "done"
+
+clean:
+	rm -f *.o *.x 
+
+
+$(EXE1): $(OBJ1) 
+	$(CLOMP) -o $@ $(OBJ1)
+
+$(EXE2): $(OBJ2) 
+	$(FLOMP) -o $@ $(OBJ2)
+
+$(EXE3): $(OBJ3) 
+	$(CLMPI) -o $@ $(OBJ3)
+
+$(EXE4): $(OBJ4) 
+	$(FLMPI) -o $@ $(OBJ4)
+
+$(EXE5): $(OBJ5) 
+	$(CL) -o $@ $(OBJ5)
+
+$(EXE6): $(OBJ6) 
+	$(FL) -o $@ $(OBJ6)
+
+
+pi_c_omp.o: pi_c_omp.c
+	$(CCOMP) $?
+
+pi_f_omp.o: pi_f_omp.f90
+	$(FCOMP) $?
+
+pi_c_mpi.o: pi_c_mpi.c
+	$(CCMPI) $?
+
+pi_f_mpi.o: pi_f_mpi.f90
+	$(FCMPI) $?
+
+pi_c.o: pi_c.c
+	$(CC) $?
+
+pi_f.o: pi_f.f90
+	$(FC) $?

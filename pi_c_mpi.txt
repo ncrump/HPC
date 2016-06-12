@@ -1,0 +1,18 @@
+% gcc-5 pi_c.c -o pi_c
+% mpicc pi_c_mpi.c -o pi_c_mpi
+
+% /usr/bin/time ./pi_c
+approximation to pi = 3.141592644576216
+        3.20 real         3.20 user         0.00 sys
+
+% /usr/bin/time mpirun -np 1 pi_c_mpi
+approximation to pi = 3.141592644576216
+        3.23 real         3.21 user         0.01 sys
+
+% /usr/bin/time mpirun -np 2 pi_c_mpi
+approximation to pi = 3.141592645076216
+        1.64 real         3.24 user         0.02 sys
+
+% /usr/bin/time mpirun -np 4 pi_c_mpi
+approximation to pi = 3.141592646076216
+        0.88 real         3.43 user         0.04 sys

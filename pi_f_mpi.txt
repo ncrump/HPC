@@ -1,0 +1,18 @@
+% gfortran-5 pi_f.f90 -o pi_f
+% mpif90 pi_f_mpi.f90 -o pi_f_mpi
+
+% /usr/bin/time ./pi_f
+ approximation to pi =   3.1415926445762157
+        3.20 real         3.20 user         0.00 sys
+
+% /usr/bin/time mpirun -np 1 pi_f_mpi
+ approximation to pi =   3.1415926445762157
+        3.28 real         3.25 user         0.01 sys
+
+% /usr/bin/time mpirun -np 2 pi_f_mpi
+ approximation to pi =   3.1415926450762157
+        1.65 real         3.24 user         0.02 sys
+
+% /usr/bin/time mpirun -np 4 pi_f_mpi
+ approximation to pi =   3.1415926460762158
+        0.89 real         3.43 user         0.04 sys

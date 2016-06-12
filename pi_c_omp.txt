@@ -1,0 +1,21 @@
+% gcc-5 pi_c.c -o pi_c
+% gcc-5 pi_c_omp.c -fopenmp -o pi_c_omp
+
+% /usr/bin/time ./pi_c
+approximation to pi = 3.141592644576216
+        3.20 real         3.20 user         0.00 sys
+
+% setenv OMP_NUM_THREADS 1
+% /usr/bin/time ./pi_c_omp
+approximation to pi = 3.141592644576216
+        3.20 real         3.20 user         0.00 sys
+
+% setenv OMP_NUM_THREADS 2
+% /usr/bin/time ./pi_c_omp
+approximation to pi = 3.141592645076216
+        1.60 real         3.21 user         0.00 sys
+
+% setenv OMP_NUM_THREADS 4
+% /usr/bin/time ./pi_c_omp
+approximation to pi = 3.141592646076216
+        0.84 real         3.36 user         0.00 sys
