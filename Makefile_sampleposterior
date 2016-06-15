@@ -1,0 +1,34 @@
+EXE1=sample_posterior_c_omp.x
+OBJ1=sample_posterior_c_omp.o
+
+
+EXE2=sample_posterior_c_mpi.x
+OBJ2=sample_posterior_c_mpi.o
+
+CCOMP=gcc-5 -Wall -O3 -c -fopenmp
+CLOMP=gcc-5 -fopenmp
+
+CCMPI=mpicc -Wall -O3 -c
+CLMPI=mpicc
+
+
+all: $(EXE1) $(EXE2)
+	@echo "done"
+
+clean:
+	rm -f *.o *.x 
+
+
+$(EXE1): $(OBJ1) 
+	$(CLOMP) -o $@ $(OBJ1)
+
+$(EXE2): $(OBJ2) 
+	$(CLMPI) -o $@ $(OBJ2)
+
+
+sample_posterior_c_omp.o: sample_posterior_c_omp.c
+	$(CCOMP) $?
+
+sample_posterior_c_mpi.o: sample_posterior_c_mpi.c
+	$(CCMPI) $?
+
