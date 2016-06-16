@@ -27,6 +27,7 @@ double ln_posterior(double ak,double bk,double *xmod,double *ymod,double *yerr,
   return -ln_prior-ln_likel;
 }
 
+// permute index
 void permute(int *index,int walkers,int seed){
   srand(time(NULL)*seed);
   for(int i=0; i<walkers-1; i++){
